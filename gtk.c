@@ -20,9 +20,9 @@ int main(int argc , char * argv[]){
   GtkWidget *lbl =gtk_label_new ("alaki");
   GtkWidget *btn2=gtk_button_new_with_label ("count button");
   g_signal_connect(btn2,"clicked",G_CALLBACK(countbutton),lbl);
-  gtk_box_pack_start(GTK_BOX(box),btn2,TRUE,TRUE,0);
-  gtk_box_pack_start(GTK_BOX (box),lbl,TRUE,TRUE,0);
-  gtk_box_pack_start(GTK_BOX(box),btn,TRUE,TRUE,0);
+  gtk_box_pack_start(GTK_BOX(box),btn2,FALSE,TRUE,0);//third argument used for expand label or button in resizing
+  gtk_box_pack_start(GTK_BOX (box),lbl,TRUE,FALSE,0);//fourth argument "fill" if expand is set to False has no effect
+  gtk_box_pack_start(GTK_BOX(box),btn,FALSE,FALSE,0);//final argument is padding and it is space between all widget in pixels
   gtk_container_add(GTK_CONTAINER (win),box);//each container can contain just one widget!!
   gtk_widget_show_all(win);
   gtk_main();

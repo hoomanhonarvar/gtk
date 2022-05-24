@@ -1,4 +1,11 @@
 #include <gtk/gtk.h>
+int count=0;
+void countbutton(GtkWidget *wid,gpointer ptr){
+  char buffer[30];
+  count++;
+  sprintf(buffer , "Button pressed %d times",count);
+  gtk_label_set_text(GTK_LABEL (ptr),buffer);
+}
 void end_program(GtkWidget *wid , gpointer ptr)
 {
   gtk_main_quit();
@@ -11,6 +18,9 @@ int main(int argc , char * argv[]){
   g_signal_connect (win,"delete_event",G_CALLBACK(end_program),NULL);//signal of x button in window
   GtkWidget *box=gtk_vbox_new(TRUE,5);
   GtkWidget *lbl =gtk_label_new ("alaki");
+  GtkWidget *btn2=gtk_button_new_with_label ("count button");
+  g_signal_connect(btn2,"clicked",G_CALLBACK(countbutton),lbl);
+  gtk_box_pack_start(GTK_BOX(box),btn2,TRUE,TRUE,0);
   gtk_box_pack_start(GTK_BOX (box),lbl,TRUE,TRUE,0);
   gtk_box_pack_start(GTK_BOX(box),btn,TRUE,TRUE,0);
   gtk_container_add(GTK_CONTAINER (win),box);//each container can contain just one widget!!
